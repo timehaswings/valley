@@ -1,0 +1,4 @@
+2020-04-03 14:59:38,372 upload_view.py 77 ERROR  module 'ntpath' has no attribute 'splittext'
+2020-04-03 16:36:30,324 upload_view.py 87 ERROR  [WinError 2] 系统找不到指定的文件。
+2020-04-03 16:40:38,738 upload_view.py 89 ERROR  [WinError 2] 系统找不到指定的文件。
+2020-04-03 16:43:46,521 upload_view.py 89 ERROR  [WinError 2] 系统找不到指定的文件。
