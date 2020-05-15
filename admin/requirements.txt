@@ -1,2 +1,15 @@
 Django==3.0.4
 djangorestframework==3.11.0
+chardet==3.0.4
+django-apscheduler==0.3.0
+django-cors-headers==3.2.0
+djangorestframework-camel-case==1.1.2
+et-xmlfile==1.0.1
+jdcal==1.4.1
+jira==2.0.0
+mysql-connector==2.2.9
+mysqlclient==1.4.6
+pdfkit==0.6.1
+pypinyin==0.36.0
+urllib3==1.25.8
+
