@@ -149,8 +149,8 @@ class Comment(models.Model):
 class Discover(models.Model):
     id = models.AutoField(primary_key=True, verbose_name='自增id')
     name = models.CharField(max_length=50, verbose_name='名称')
-    content = models.TextField(null=True, blank=True, verbose_name='内容')
-    is_active = models.BooleanField(default=1, verbose_name='是否启用')
+    content = models.TextField(max_length=1000, verbose_name='内容')
+    is_active = models.BooleanField(default=True, verbose_name='是否启用')
     creater_id = models.IntegerField(verbose_name='创建人ID')
     creater_name = models.CharField(max_length=10, verbose_name='创建姓名')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
@@ -169,8 +169,9 @@ class Discover(models.Model):
 class Travel(models.Model):
     id = models.AutoField(primary_key=True, verbose_name='自增id')
     uid = models.IntegerField(default=0, verbose_name='用户ID')
-    vid = models.IntegerField(default=0, verbose_name='视频ID')
-    ip = models.CharField(max_length=20, verbose_name='ip地址')
+    uname = models.CharField(null=True, blank=True, max_length=40, verbose_name='用户名称')
+    vguid = models.CharField(null=True, blank=True, max_length=40,  verbose_name='视频guid')
+    ip = models.CharField(max_length=40, verbose_name='ip地址')
     action = models.CharField(max_length=40, verbose_name='访问路径')
     access_time = models.DateTimeField(auto_now_add=True, verbose_name='发生时间')
 
@@ -184,7 +185,15 @@ class Travel(models.Model):
 class Config(models.Model):
     id = models.AutoField(primary_key=True, verbose_name='自增id')
     name = models.CharField(max_length=20, verbose_name='变量key')
+    desc = models.CharField(max_length=80, verbose_name='变量描述')
     value = models.CharField(max_length=20, verbose_name='变量value')
+    creater_id = models.IntegerField(verbose_name='创建人ID')
+    creater_name = models.CharField(max_length=10, verbose_name='创建姓名')
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    updater_name = models.CharField(max_length=10, verbose_name='更新人姓名')
+    updater_id = models.IntegerField(verbose_name='更新人ID')
+    update_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+    is_delete = models.BooleanField(default=False, verbose_name='是否已删除')
 
     class Meta:
         db_table = 'tb_config'

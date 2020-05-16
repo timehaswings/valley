@@ -23,17 +23,15 @@ class RoleAPIView(APIView):
         try:
             data = request.data
             data['creater_id'] = request.user.id
-            data['updater_id'] = data['creater_id']
-            data['creater_name'] = request.user.name
-            data['updater_name'] = data['creater_name']
+            data['updater_id'] = request.user.id
+            data['creater_name'] = request.user.username
+            data['updater_name'] = request.user.username
             data['is_delete'] = False
-
             try:
                 serializer = SysRoleSerializer(data=data)
                 serializer.is_valid(raise_exception=True)
                 serializer.save()
 
-                # 往测试集表新增记录
             except Exception as e:
                 result['msg'] = '新增失败：%s' % e
                 result['success'] = False
@@ -54,7 +52,7 @@ class RoleAPIView(APIView):
         try:
             data = request.data
             data['updater_id'] = request.user.id
-            data['updater_name'] = request.user.name
+            data['updater_name'] = request.user.username
 
             obj = SysRole.objects.filter(id=data.get('role_id')).first()
             del data['role_id']

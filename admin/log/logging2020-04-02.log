@@ -1,0 +1,2 @@
+2020-04-03 14:30:46,043 upload_view.py 26 INFO  is not exist path: D:/Work/web/valley_admin2/valley/upload\attachments\c15a60b0-7c0a-434b-a9ac-3bbc001366f1 and need to makedir
+2020-04-03 14:30:46,052 upload_view.py 40 INFO  ['D:/Work/web/valley_admin2/valley/upload\\attachments\\c15a60b0-7c0a-434b-a9ac-3bbc001366f1\\animation-intro.mp4']

@@ -13,7 +13,6 @@ from datetime import timedelta
 class ExpiringTokenAuthentication(TokenAuthentication):
     def authenticate_credentials(self, key):
         # 优先从缓存中获取token关联的用户
-        print(key + '---')
         cache_user = cache.get(key)
         if cache_user:
             return cache_user, key

@@ -5,8 +5,8 @@ from rest_framework import status
 from rest_framework.parsers import MultiPartParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
+import backend.common.video_handler as handler
 import datetime
-import ffmpeg
 import logging
 import uuid
 import os
@@ -73,17 +73,14 @@ class UploadVideoView(APIView):
                             file_handler.write(chunk)
                     finally:
                         file_handler.close()
-
                     try:
-                        info = ffmpeg.probe('D:\\Res\\video\\animation-intro.mp4')
-                        print(file_absolute_path)
-                        print(info)
-                        output = os.path.join(fileDir, name + ".m3u8").replace("\"", "")
-                        ffmpeg.input(file_absolute_path).output(output, format='hls', start_number=0, hls_time=10,
-                                                                hls_list_size=0).run()
-                        file_relative_path = os.path.join(subdir, name + ".m3u8")
+                        out_path = os.path.join(fileDir, 'out.m3u8').replace("\"", "")
+                        cover_path = os.path.join(fileDir, 'cover.jpeg').replace("\"", "")
+                        thumb_path = os.path.join(fileDir, 'thumb.jpeg').replace("\"", "")
+                        handler.create_m3u8(file_absolute_path, out_path, cover_path, thumb_path)
+                        file_relative_path = os.path.join(subdir, 'out.m3u8')
                     except Exception as ex:
-                        print('视频转化m3u8失败: %s' % ex)
+                        logger.error(ex)
                     files_address.append(file_relative_path)
             except Exception as e:
                 logger.error(e)

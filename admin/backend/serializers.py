@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 from rest_framework import serializers
-from backend.models import User, SysRole, Tags, Category, BaseVideo, Comment
+from backend.models import User, SysRole, Tags, Category, BaseVideo, Comment, Discover, Travel, Config
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -73,3 +73,31 @@ class CommentSerializer(serializers.ModelSerializer):
         extra_kwargs = {'is_delete': {'write_only': True}}
         read_only_fields = ['create_time']
 
+
+class DiscoverSerializer(serializers.ModelSerializer):
+    create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
+    update_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
+
+    class Meta:
+        model = Discover
+        fields = '__all__'
+        extra_kwargs = {'is_delete': {'write_only': True}}
+        read_only_fields = ['create_time']
+
+
+class TravelSerializer(serializers.ModelSerializer):
+    access_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
+
+    class Meta:
+        model = Travel
+        fields = '__all__'
+
+
+class ConfigSerializer(serializers.ModelSerializer):
+    create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
+    update_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
+
+    class Meta:
+        model = Config
+        fields = '__all__'
+        read_only_fields = ['create_time']

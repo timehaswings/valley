@@ -8,6 +8,9 @@ from backend.tags.tags_view import TagsAPIView
 from backend.video.video_view import VideoAPIView
 from backend.upload.upload_view import UploadFileView, UploadVideoView
 from backend.comment.comment_view import CommentAPIView
+from backend.config.config_view import ConfigAPIView
+from backend.discover.discover_view import DiscoverAPIView
+from backend.travel.travel_view import TravelAPIView
 from django.views.static import serve
 from valley.settings import UPLOAD_ROOT
 
@@ -22,6 +25,9 @@ urlpatterns = [
     path('api/v1/tags', TagsAPIView.as_view()),
     path('api/v1/video', VideoAPIView.as_view()),
     path('api/v1/user/role', UserRolesAPIView.as_view()),
+    path('api/v1/travel', TravelAPIView.as_view()),
+    path('api/v1/discover', DiscoverAPIView.as_view()),
+    path('api/v1/config', ConfigAPIView.as_view()),
     path('api/v1/upload/file', UploadFileView.as_view()),
     path('api/v1/upload/video', UploadVideoView.as_view()),
     re_path(r"^upload/(?P<path>.*)/", serve, {"document_root": UPLOAD_ROOT})
