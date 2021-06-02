@@ -11,5 +11,5 @@ mysql-connector==2.2.9
 mysqlclient==1.4.6
 pdfkit==0.6.1
 pypinyin==0.36.0
-urllib3==1.25.8
+urllib3==1.26.5
 
